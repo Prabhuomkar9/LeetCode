@@ -1,72 +1,37 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
 char *convert(char *s, int numRows)
 {
     if (numRows == 1)
         return s;
-
-    int n = strlen(s);
-
-    char **row = (char **)malloc(numRows * sizeof(char *));
-    int *rowSize = (int *)malloc(numRows * sizeof(int));
-    for (int i = 0; i < numRows; i++)
+    int n = strlen(s), limit = (numRows - 1) * 2;
+    char *ans = (char *)malloc((n + 1) * sizeof(char));
+    int end = 0, i = 0, row = 0, alt = 0, flag = 0;
+    while (end != n)
     {
-        rowSize[i] = 0;
-        row[i] = (char *)malloc((rowSize[i] + 1) * sizeof(char));
-    }
-
-    int goingDown = 1, rowNo = -1;
-    for (int i = 0; i < n; i++)
-    {
-        if (goingDown)
-            rowNo++;
+        if (i >= n)
+        {
+            row++;
+            i = row;
+            alt = 0;
+            continue;
+        }
+        if (!flag)
+            ans[end++] = s[i];
+        flag = 0;
+        if (alt)
+        {
+            alt = 0;
+            i += row * 2;
+            if (row * 2 == 0)
+                flag = 1;
+        }
         else
-            rowNo--;
-        if (rowNo == numRows - 1)
-            goingDown = 0;
-        if (rowNo == 0)
-            goingDown = 1;
-        row[rowNo][rowSize[rowNo]++] = s[i];
-        row[rowNo] = (char *)realloc(row[rowNo], (rowSize[i] + 1) * sizeof(char));
-    }
-
-    for (int i = 0; i < numRows; i++)
-        row[i][rowSize[i]] = '\0';
-
-    for (int i = 0; i < numRows; i++)
-    {
-        for (int j = 0; row[i][j] != '\0'; j++)
         {
-            printf("%c\t", row[i][j]);
+            alt++;
+            i += limit - (row * 2);
+            if (limit - (row * 2) == 0)
+                flag = 1;
         }
-        printf("\n");
     }
-
-    rowNo = 0;
-    int rowCell = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (rowCell >= rowSize[rowNo])
-        {
-            rowNo++;
-            rowCell = 0;
-        }
-        s[i] = row[rowNo][rowCell++];
-    }
-    for (int i = 0; i < numRows; i++)
-        free(row[i]);
-    free(row);
-    free(rowSize);
-    return s;
-}
-
-// Driver code
-int main(int argc, char const *argv[])
-{
-    char s[] = "0123456789ABCDEF";
-    char *ans = convert(s, 3);
-    printf("%s", ans);
-    return 0;
+    ans[n] = '\0';
+    return ans;
 }
