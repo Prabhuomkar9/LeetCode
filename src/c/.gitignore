@@ -2,3 +2,4 @@
 *.exe
 mainTest.py
 stash.txt
+.*/.vscode
