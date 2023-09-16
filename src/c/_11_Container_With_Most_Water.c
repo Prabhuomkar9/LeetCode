@@ -1,20 +1,14 @@
 int maxArea(int *height, int heightSize)
 {
-    int ans = 0, volume = 0, i = 0, j = heightSize - 1, width = j - i;
-    while (i < j)
+    int ans = 0, vol = 0, *rHeight = height + heightSize - 1;
+    while (height < rHeight)
     {
-        if (height[i] < height[j])
-        {
-            volume = height[i] * width--;
-            i++;
-        }
+        if (*height < *rHeight)
+            vol = *(height++) * --heightSize;
         else
-        {
-            volume = height[j] * width--;
-            j--;
-        }
-        if (volume > ans)
-            ans = volume;
+            vol = *(rHeight--) * --heightSize;
+        if (vol > ans)
+            ans = vol;
     }
     return ans;
 }
