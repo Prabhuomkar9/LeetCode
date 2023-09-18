@@ -4,5 +4,5 @@ My LeetCode Solutions
 
 ## Table Of Contents
 
-- C Solutions []
-- Python Solutions [src/python]
+- [C Solutions](src/c)
+- [Python Solutions](src/python)
