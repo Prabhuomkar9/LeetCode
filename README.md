@@ -4,5 +4,5 @@ My LeetCode Solutions
 
 ## Table Of Contents
 
-1. Two Sum
-2. Add Two Numbers
+- [C Solutions](src/c/README.md)
+- [Python Solutions](src/python/README.md)
