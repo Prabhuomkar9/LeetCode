@@ -1,6 +1,7 @@
-# Python Solutions  
-Python solutions to LeetCode problems  
-https://leetcode.com/problemset/all/
+# Python Solutions
+
+Python solutions to LeetCode problems
+<https://leetcode.com/problemset/all/>
 
 On a very low level of computer working, python solutions take up more time and space.
 
