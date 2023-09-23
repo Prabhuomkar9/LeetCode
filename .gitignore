@@ -1,7 +1,9 @@
 .vscode
 *.exe
+*.class
 mainTest.c
 mainTest.py
 mainTest.java
+mainTest.cpp
 tempCodeRunnerFile.py
 stash.txt
