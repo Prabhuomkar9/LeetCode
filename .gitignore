@@ -2,5 +2,6 @@
 *.exe
 mainTest.c
 mainTest.py
+mainTest.java
 tempCodeRunnerFile.py
 stash.txt
