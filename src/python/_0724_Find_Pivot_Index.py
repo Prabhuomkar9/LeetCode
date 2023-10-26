@@ -7,4 +7,6 @@ class Solution:
             if prefix == total - prefix - nums[i]:
                 return i
 
+            prefix += nums[i]
+
         return -1
