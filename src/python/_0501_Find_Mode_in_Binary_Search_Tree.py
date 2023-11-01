@@ -21,10 +21,4 @@ class Solution:
 
         mode = max(seen.values())
 
-        ans = []
-
-        for key, val in seen.items():
-            if val == mode:
-                ans.append(key)
-
-        return ans
+        return [key for key, val in seen.items() if val == mode]
