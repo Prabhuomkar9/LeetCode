@@ -1,21 +1,21 @@
 class Solution {
     public int mySqrt(int x) {
-        if(x <= 1)
+        if (x <= 1)
             return x;
 
-        int l = 0, r = 46340;
+        long l = 2, r = x;
 
-        while(l <= r){
-            int m = (l + r) / 2, val = m * m;
+        while (l <= r) {
+            long m = l + (r - l) / 2;
 
-            if(val == x)
-                return m;
-            else if(val < x)
+            if (m * m == x)
+                return (int) m;
+            else if (m * m < x)
                 l = m + 1;
             else
                 r = m - 1;
         }
 
-        return r;
+        return (int) r;
     }
 }
