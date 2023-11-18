@@ -3,11 +3,11 @@ class Solution:
         ans = [0] * len(temperatures)
         monoStack = []
 
-        for i, temp in enumerate(temperatures):
-            while monoStack and monoStack[-1][0] < temp:
-                lastTemp, j = monoStack.pop()
-                ans[j] = i - j
+        for i, temperature in enumerate(temperatures):
+            while monoStack and temperature > monoStack[-1][0]:
+                _, idx = monoStack.pop()
+                ans[idx] = i - idx
 
-            monoStack.append((temp, i))
+            monoStack.append((temperature, i))
 
         return ans
