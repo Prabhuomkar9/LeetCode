@@ -1,15 +1,11 @@
 class Solution:
     def findDiagonalOrder(self, nums: List[List[int]]) -> List[int]:
-        hashes = []
-        total = 0
+        ans = []
 
         for i, row in enumerate(nums):
             for j, num in enumerate(row):
-                heapq.heappush(hashes, (i + j, len(nums) - i, num))
-                total += 1
+                if len(ans) <= i + j:
+                    ans.append([])
+                ans[i + j].insert(0, num)
 
-        ans = []
-        for _ in range(total):
-            ans.append(heapq.heappop(hashes)[2])
-
-        return ans
+        return [num for row in ans for num in row]
