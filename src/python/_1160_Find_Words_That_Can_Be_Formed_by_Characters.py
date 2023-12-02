@@ -1,12 +1,22 @@
 class Solution:
     def countCharacters(self, words: List[str], chars: str) -> int:
         ans = 0
-        freq = Counter(chars)
+        freq = defaultdict(int)
+
+        for char in chars:
+            freq[char] += 1
 
         for word in words:
-            count = Counter(word)
+            count = freq.copy()
+            flag = False
 
-            if all(freq[ch] >= count[ch] for ch in word):
+            for char in word:
+                count[char] -= 1
+                if count[char] < 0:
+                    flag = True
+                    break
+
+            if not flag:
                 ans += len(word)
 
         return ans
